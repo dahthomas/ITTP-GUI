@@ -1,0 +1,124 @@
+--Constant Vars
+local HttpService = game:GetService("HttpService")
+local mainFolder = game.workspace.MCLocations
+local modelGrouping = mainFolder:GetChildren()
+--local MainPart = modelGrouping.main
+local RedNum = 0
+local GreenNum = 0
+local BlueNum = 0
+local YellowNum = 0
+
+--Creates GUI Parts
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Close = Instance.new("TextButton")
+local TruthCodeTitle = Instance.new("TextLabel")
+local RedLabel = Instance.new("TextLabel")
+local GreenLabel = Instance.new("TextLabel")
+local BlueLabel = Instance.new("TextLabel")
+local YellowLabel = Instance.new("TextLabel")
+
+--Assignes GUI Parts
+
+ScreenGui.Name = HttpService:GenerateGUID(false)
+ScreenGui.Parent = game:GetService("CoreGui")
+
+Frame.Parent = ScreenGui
+Frame.Active = true
+Frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+Frame.BorderColor3 = Color3.fromRGB(31, 31, 31)
+Frame.Draggable = true
+Frame.Size = UDim2.new(0.4, 0, 0.3, 0)
+
+TruthCodeTitle.Parent = Frame
+TruthCodeTitle.Active = true
+TruthCodeTitle.BackgroundTransparency = 1
+TruthCodeTitle.BorderSizePixel = 0
+TruthCodeTitle.Size = UDim2.new(0.3, 0, 0.2, 0)
+TruthCodeTitle.Position = UDim2.new(0.02, 0, 0, 0)
+TruthCodeTitle.Text = "Truth Code"
+TruthCodeTitle.TextColor3 = Color3.fromRGB(170, 170, 170)
+TruthCodeTitle.TextScaled = true
+TruthCodeTitle.TextSize = 14
+
+Close.Parent = Frame
+Close.Active = true
+Close.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Close.BackgroundTransparency = 0.3
+Close.BorderSizePixel = 0
+Close.Size = UDim2.new(0.1, 0, 0.1, 0)
+Close.Position = UDim2.new(0.9, 0, 0, 0)
+Close.Text = "Close"
+Close.TextScaled = true
+
+RedLabel.Parent = Frame
+RedLabel.Active = true
+RedLabel.BackgroundTransparency = 1
+RedLabel.BorderSizePixel = 0
+RedLabel.Size = UDim2.new(0.2, 0, 0.1, 0)
+RedLabel.Position = UDim2.new(0.055, 0, 0.2, 0)
+RedLabel.Text = RedNum
+RedLabel.TextScaled = true
+RedLabel.TextColor3 = Color3.fromRGB(255, 0 ,0)
+
+GreenLabel.Parent = Frame
+GreenLabel.Active = true
+GreenLabel.BackgroundTransparency = 1
+GreenLabel.BorderSizePixel = 0
+GreenLabel.Size = UDim2.new(0.2, 0, 0.1, 0)
+GreenLabel.Position = UDim2.new(0.055, 0, 0.3, 0)
+GreenLabel.Text = GreenNum
+GreenLabel.TextScaled = true
+GreenLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+
+BlueLabel.Parent = Frame
+BlueLabel.Active = true
+BlueLabel.BackgroundTransparency = 1
+BlueLabel.BorderSizePixel = 0
+BlueLabel.Size = UDim2.new(0.2, 0, 0.1, 0)
+BlueLabel.Position = UDim2.new(0.055, 0, 0.4, 0)
+BlueLabel.Text = BlueNum
+BlueLabel.TextScaled = true
+BlueLabel.TextColor3 = Color3.fromRGB(0, 0, 255)
+
+YellowLabel.Parent = Frame
+YellowLabel.Active = true
+YellowLabel.BackgroundTransparency = 1
+YellowLabel.BorderSizePixel = 0
+YellowLabel.Size = UDim2.new(0.2, 0, 0.1, 0)
+YellowLabel.Position = UDim2.new(0.055, 0, 0.5, 0)
+YellowLabel.Text = YellowNum
+YellowLabel.TextScaled = true
+YellowLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
+
+--GUI Functions
+
+Close.Activated:Connect(function()
+    ScreenGui.Enabled = false
+end)
+
+--Functions
+
+--Medium blue = blue | Daisy orange = yellow | Terra Cotta = red | Shamrock = green
+
+function GetValues()
+    for i, v in pairs(modelGrouping) do
+        if v.main.BrickColor == BrickColor.new("Medium blue") then
+            BlueNum = v.main.SurfaceGui.Label.Text
+            BlueLabel.Text = BlueNum
+        elseif v.main.BrickColor == BrickColor.new("Daisy orange") then
+            YellowNum = v.main.SurfaceGui.Label.Text
+            YellowLabel.Text = YellowNum
+        elseif v.main.BrickColor == BrickColor.new("Terra Cotta") then
+            RedNum = v.main.SurfaceGui.Label.Text
+            RedLabel.Text = RedNum
+        elseif v.main.BrickColor == BrickColor.new("Shamrock") then
+            GreenNum = v.main.SurfaceGui.Label.Text
+            GreenLabel.Text = GreenNum
+        end
+    end
+end
+
+GetValues()
+
