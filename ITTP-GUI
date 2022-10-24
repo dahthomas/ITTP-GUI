@@ -13,6 +13,7 @@ local YellowNum = 0
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local Close = Instance.new("TextButton")
+local Refresh = Instance.new("TextButton")
 local TruthCodeTitle = Instance.new("TextLabel")
 local RedLabel = Instance.new("TextLabel")
 local GreenLabel = Instance.new("TextLabel")
@@ -51,6 +52,16 @@ Close.Size = UDim2.new(0.1, 0, 0.1, 0)
 Close.Position = UDim2.new(0.9, 0, 0, 0)
 Close.Text = "Close"
 Close.TextScaled = true
+
+Refresh.Parent = Frame
+Refresh.Active = true
+Refresh.BackgroundTransparency = 1
+Refresh.BorderSizePixel = 0
+Refresh.Size = UDim2.new(0.2, 0, 0.1, 0)
+Refresh.Position = UDim2.new(0.055, 0, 0.65, 0)
+Refresh.Text = "Refresh Code"
+Refresh.TextScaled = true
+Refresh.TextColor3 = Color3.fromRGB(100, 100, 100)
 
 RedLabel.Parent = Frame
 RedLabel.Active = true
@@ -92,12 +103,6 @@ YellowLabel.Text = YellowNum
 YellowLabel.TextScaled = true
 YellowLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
 
---GUI Functions
-
-Close.Activated:Connect(function()
-    ScreenGui.Enabled = false
-end)
-
 --Functions
 
 --Medium blue = blue | Daisy orange = yellow | Terra Cotta = red | Shamrock = green
@@ -121,4 +126,19 @@ function GetValues()
 end
 
 GetValues()
+
+--GUI Functions
+
+Close.Activated:Connect(function()
+    ScreenGui.Enabled = false
+end)
+
+Refresh.MouseButton1Click:Connect(function()
+    RedLabel.Text = "10"
+    GreenLabel.Text = "10"
+    BlueLabel.Text = "10"
+    YellowLabel.Text = "10"
+    wait(0.1)
+    GetValues()
+end)
 
