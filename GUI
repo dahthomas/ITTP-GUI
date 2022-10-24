@@ -107,25 +107,47 @@ YellowLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
 
 --Medium blue = blue | Daisy orange = yellow | Terra Cotta = red | Shamrock = green
 
-function GetValues()
+valuesExist = 0
+
+function CheckValues()
     for i, v in pairs(modelGrouping) do
-        if v.main.BrickColor == BrickColor.new("Medium blue") then
-            BlueNum = v.main.SurfaceGui.Label.Text
-            BlueLabel.Text = BlueNum
-        elseif v.main.BrickColor == BrickColor.new("Daisy orange") then
-            YellowNum = v.main.SurfaceGui.Label.Text
-            YellowLabel.Text = YellowNum
-        elseif v.main.BrickColor == BrickColor.new("Terra Cotta") then
-            RedNum = v.main.SurfaceGui.Label.Text
-            RedLabel.Text = RedNum
-        elseif v.main.BrickColor == BrickColor.new("Shamrock") then
-            GreenNum = v.main.SurfaceGui.Label.Text
-            GreenLabel.Text = GreenNum
+        if v.main then
+            valuesExist = 1
+            GetValues()
+        else
+            valuesExist = 0
         end
     end
 end
 
-GetValues()
+
+function GetValues()
+    if valuesExist = 1 then
+        for i, v in pairs(modelGrouping) do
+            if v.main.BrickColor == BrickColor.new("Medium blue") then
+                BlueNum = v.main.SurfaceGui.Label.Text
+                BlueLabel.Text = BlueNum
+            elseif v.main.BrickColor == BrickColor.new("Daisy orange") then
+                YellowNum = v.main.SurfaceGui.Label.Text
+                YellowLabel.Text = YellowNum
+            elseif v.main.BrickColor == BrickColor.new("Terra Cotta") then
+                RedNum = v.main.SurfaceGui.Label.Text
+                RedLabel.Text = RedNum
+            elseif v.main.BrickColor == BrickColor.new("Shamrock") then
+                GreenNum = v.main.SurfaceGui.Label.Text
+                GreenLabel.Text = GreenNum
+            end
+        end
+    else
+        print("Values not loaded")
+        RedLabel.Text = "Refresh"
+        GreenLabel.Text = "Refresh"
+        BlueLabel.Text = "Refresh"
+        YellowLabel.Text = "Refresh"
+    end
+end
+
+CheckValues()
 
 --GUI Functions
 
@@ -139,6 +161,6 @@ Refresh.MouseButton1Click:Connect(function()
     BlueLabel.Text = "10"
     YellowLabel.Text = "10"
     wait(0.1)
-    GetValues()
+    CheckValues()
 end)
 
