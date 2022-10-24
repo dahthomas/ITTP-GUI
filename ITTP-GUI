@@ -129,7 +129,7 @@ GetValues()
 
 --GUI Functions
 
-Close.Activated:Connect(function()
+Close.MouseButton1Click:Connect(function()
     ScreenGui.Enabled = false
 end)
 
