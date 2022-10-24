@@ -1,10 +1,14 @@
---Wait for load
-repeat wait() until game:IsLoaded()
+--Wait to load
+if not game:IsLoaded() then
+    --create loading screen
+    game.Loaded:Wait()
+end
 
 --Constant Vars
 local HttpService = game:GetService("HttpService")
-local mainFolder = game.workspace.MCLocations
+local mainFolder = game.Workspace.MCLocations
 local modelGrouping = mainFolder:GetChildren()
+local ExploitDetectParts = game.Workspace.ExploitDetectParts
 local RedNum = 0
 local GreenNum = 0
 local BlueNum = 0
